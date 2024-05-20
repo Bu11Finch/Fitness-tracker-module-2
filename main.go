@@ -60,15 +60,13 @@ type InfoMessage struct {
 // TrainingInfo возвращает cтруктуру InfoMessage, в которой хранится вся информация о проведенной тренировке.
 func (t Training) TrainingInfo() InfoMessage {
 	// вставьте ваш код ниже
-	i := InfoMessage{
+	return InfoMessage{
 		TrainingType: t.TrainingType,
 		Duration:     t.Duration,
 		Distance:     t.distance(),
 		Speed:        t.meanSpeed(),
 		Calories:     t.Calories(),
 	}
-
-	return i
 }
 
 // String возвращает строку с информацией о проведенной тренировке.
@@ -142,7 +140,7 @@ type Walking struct {
 func (w Walking) Calories() float64 {
 	// вставьте ваш код ниже
 	weight := w.Training.Weight
-	meenSpeedMSec := w.Training.meanSpeed() * MInKm / 3600
+	meenSpeedMSec := w.Training.meanSpeed() * KmHInMsec
 	duration := w.Training.Duration.Hours()
 	return ((CaloriesWeightMultiplier*weight + (math.Pow(meenSpeedMSec, 2)/w.Height)*CaloriesSpeedHeightMultiplier*weight) * duration * MinInHours)
 }
